@@ -1,0 +1,14 @@
+{
+    "dependencies": [],
+    "environment_configurations": 
+    {
+    	"dev": 
+    	{
+    		"deep_text":"This is the deep dev version."
+    	},
+    	"alpha": 
+    	{
+    		"deep_text":"This is the deep alpha version."
+    	}
+    }
+}

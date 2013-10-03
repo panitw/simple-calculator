@@ -1,0 +1,22 @@
+{
+    "dependencies": ["./app_config_more.json"],
+    "version": "1.0.1",
+    "environment_configurations": 
+    {
+    	"dev": 
+    	{
+    		"text":"This is the dev version."
+    	},
+    	"alpha": 
+    	{
+    		"text":"This is the alpha version."
+    	}
+    },
+    "jobs":
+        [
+            { "name": "Test SDAB 1 (every 1s)", "enabled": false, "run": {"second":null}, "path": "../TestSDAB.js" },
+            { "name": "Test SDAB 2 (3rd second every minute)", "enabled": false, "run": {"second":3}, "path": "../TestSDAB.js" },
+            { "name": "Test SDAB 3 (every Sunday at 2:30pm)", "enabled": false, "run": {"hour": 14, "minute": 30, "dayOfWeek": 0}, "path": "../TestSDAB.js" },
+            { "name": "Test SDAB 4 (every 1 minutes)","retryAttempts": 3, "retryInterval": 5000, "run": "* * * * *", "path": "../TestSDAB.js" }
+        ]
+}

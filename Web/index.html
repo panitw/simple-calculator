@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Simple Calculator App</title>
+    <script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" src="scripts/service.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+</head>
+<body>
+    Calculator: <input type="text" id="op1" value="2">
+    <select id="operator">
+        <option value="add">+</option>
+        <option value="minus">-</option>
+        <option value="multiply">*</option>
+        <option value="divide">/</option>
+        <option value="mod">%</option>
+        <option value="pow">^</option>
+    </select>
+    <input type="text" id="op2" value="3">
+    <input type="button" id="calcButton" value="Calculate">
+    <input type="button" id="externalRequest" value="Ext Req">
+    <br>
+    Result: <span id="output"></span>
+</body>
+</html>
