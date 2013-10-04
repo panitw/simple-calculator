@@ -1,0 +1,79 @@
+<html class="etk-app-global">
+<head>
+	<title>Sample UI Toolkit App</title>
+    <script type="text/javascript" src="scripts/third_party/jquery.js"></script>
+    <script type="text/javascript" src="scripts/layer/toolkit.js"></script>
+    <link rel="stylesheet" type="text/css" href="scripts/layer/toolkit.css" />
+    <style>
+        body {
+            margin: 0px;
+        }
+        .etk-appcontent-outerborder
+        {            
+            height: -webkit-calc(100% - 2px);
+        }
+        .etk-appcontent
+        {    
+            height:-webkit-calc(100% - 12px);
+        }
+    </style>
+    <script type="text/javascript">
+		var appToolbar = null;
+		var textLabel = null;
+		var textBox = null;
+		var button = null;
+		var outputLabel = null;
+			
+		function getData(url) {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open('GET', url, false);
+			xmlhttp.send();
+			return xmlhttp.responseText;
+		}
+	
+    	function onLoadHandler() {
+
+            appToolbar = new tr.ui.v2.AppToolbar({caption:"Eikon Application SDK Demo"});
+            appToolbar.render(document.getElementById("appToolbar"));
+
+            textLabel = new tr.ui.TextLabel({text:"Enter RIC"});
+            textLabel.render(document.getElementById("divTextLabel"));
+
+            outputLabel = new tr.ui.TextLabel({text:""});
+            outputLabel.render(document.getElementById("outputLabel"));
+
+    		textBox = new tr.ui.TextBox({});
+    		textBox.render(document.getElementById("divTextBox"));
+
+    		button = new tr.ui.Button({text:"Click Me"});
+    		button.render(document.getElementById("divButton"));
+            button.getClickedEvent().listen(function() {
+				var ric = textBox.getText();
+				var result = getData("/service/SearchTest/RICInfo?ric="+ric);
+				var resultObj = JSON.parse(result);
+				var name = resultObj["ns1:SearchResponse"]["ns1:Result"]["ns1:Hit"]["ns1:DocumentTitle"][0]["ns1:Value"];
+				outputLabel.setText(name);
+            });
+    	}
+    </script>
+</head>
+<body onload="onLoadHandler()" class="scheme2">
+    <div class="etk-appcontent-outerborder">
+        <div id="etk-appcontent" class="etk-appcontent">
+            <div id="appToolbar"></div>
+            <div class="etk-section">
+                <div id="section1" class="etk-section-content">
+                    <div id="divTextLabel"></div>
+                    <div class="etk-emptyrow"></div>
+                    <div id="divTextBox"></div>
+                    <div class="etk-emptyrow"></div>
+                    <div id="divButton"></div>
+                    <div class="etk-emptyrow"></div>
+                    <div id="outputLabel"></div>
+                    <div class="etk-emptyrow"></div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</body>
+</html>
