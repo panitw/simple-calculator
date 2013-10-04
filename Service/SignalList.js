@@ -2,7 +2,7 @@ var ws = require("ws.js");
 var xml2json = require("xml2json");
 var moment = require("moment");
 
-var endpoint = "http://10.65.9.238/SignalFormulaService/SignalFormulaService.svc";
+var endpoint = "http://amers1.torurs.cp.icp2.mpp.ime.reuters.com/urreq/rrurreq.dll";
 
 function SignalList() {
 }
