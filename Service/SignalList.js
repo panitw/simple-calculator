@@ -47,7 +47,7 @@ SignalList.prototype.service = function(context, payload, callback) {
             object: true
         });
         console.log(ctx.response);
-        var result = json["s:Envelope"]["s:Body"]["GetAllSignalFormulasResponse"]["SignalEntities"];
+        var result = json["s:Envelope"]["s:Body"]["GetAllSignalFormulasResponse"]["SignalEntities"]["SignalFormula"];
         if (!result["s:Fault"]) {
             callback(null, result);
         } else {
