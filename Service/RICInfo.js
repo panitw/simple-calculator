@@ -9,7 +9,7 @@ RICInfo.prototype.service = function(context, payload, callback) {
             max = 1;
         }
         console.log("RICInfo: Searching for "+ric);
-        context.callService("CoreService","Search", {
+        context.callService("SimpleCalculator","Search", {
             Type: "Searchall",
             QueryHeader: {
                 MaxCount: max

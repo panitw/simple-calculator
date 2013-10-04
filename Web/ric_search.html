@@ -49,7 +49,7 @@
     		button.render(document.getElementById("divButton"));
             button.getClickedEvent().listen(function() {
 				var ric = textBox.getText();
-				var result = getData("/service/SearchTest/RICInfo?ric="+ric);
+				var result = getData("/service/SimpleCalculator/RICInfo?ric="+ric);
 				var resultObj = JSON.parse(result);
 				var name = resultObj["ns1:SearchResponse"]["ns1:Result"]["ns1:Hit"]["ns1:DocumentTitle"][0]["ns1:Value"];
 				outputLabel.setText(name);
