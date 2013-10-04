@@ -36,40 +36,67 @@ Search.prototype.init = function() {
 Search.prototype.service = function(context, payload, callback) {
     var param = payload;
     var type = param.Type;
+    // var request =
+    //     '<soap:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
+    //     '<soap:Header>'+
+    //     '<SearchRequestHeader xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/RequestDatatypes_2">'+
+    //     '<Session xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/CommonDatatypes_2">'+
+    //     '<SessionId>CONFIG</SessionId>'+
+    //     '</Session>'+
+    //     '</SearchRequestHeader>'+
+    //     '<transactionInfo xmlns="http://schemas.reuters.com/ns/2005/08/infrastructure/tornado_soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">'+
+    //     '<id>N/A</id>'+
+    //     '</transactionInfo>'+
+    //     '</soap:Header>'+
+    //     '<soap:Body>'+
+    //     '<SearchRequest xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/RequestDatatypes_2">'+
+    //     '<ClientInfo>'+
+    //     '<Product xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/SessionManagement_2">Explorer</Product>'+
+    //     '<ProductVersion xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/SessionManagement_2">1.0.0.0</ProductVersion>'+
+    //     '</ClientInfo>'+
+    //     this.generateQueryHeader_(param)+
+    //     this.generateQuery_(param)+
+    //     this.generateFilter_(param)+
+    //     '</SearchRequest>'+
+    //     '</soap:Body>'+
+    //     '</soap:Envelope>';
+
     var request =
-        '<soap:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
-        '<soap:Header>'+
-        '<SearchRequestHeader xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/RequestDatatypes_2">'+
-        '<Session xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/CommonDatatypes_2">'+
-        '<SessionId>CONFIG</SessionId>'+
-        '</Session>'+
-        '</SearchRequestHeader>'+
-        '<transactionInfo xmlns="http://schemas.reuters.com/ns/2005/08/infrastructure/tornado_soap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">'+
-        '<id>N/A</id>'+
-        '</transactionInfo>'+
-        '</soap:Header>'+
-        '<soap:Body>'+
-        '<SearchRequest xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/RequestDatatypes_2">'+
-        '<ClientInfo>'+
-        '<Product xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/SessionManagement_2">Explorer</Product>'+
-        '<ProductVersion xmlns="http://www.reuters.com/ns/2008/03/05/webservices/Search_2/SessionManagement_2">1.0.0.0</ProductVersion>'+
-        '</ClientInfo>'+
-        this.generateQueryHeader_(param)+
-        this.generateQuery_(param)+
-        this.generateFilter_(param)+
-        '</SearchRequest>'+
-        '</soap:Body>'+
-        '</soap:Envelope>';
+        '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://schemas.reuters.com/ns/2007/10/cp/user_identity" xmlns:tor="http://schemas.reuters.com/ns/2005/08/infrastructure/tornado_soap" xmlns:ns="http://schemas.thomsonreuters.com/signals/formulas/messages/2013-09-01/">'+
+           '<soapenv:Header>'+
+              '<user:userIdentity>'+
+                 '<!--Optional:-->'+
+                 '<user:UUID>?</user:UUID>'+
+                 '<!--Optional:-->'+
+                 '<user:SUBID>?</user:SUBID>'+
+              '</user:userIdentity>'+
+              '<tor:applicationInfo>'+
+                 '<!--Optional:-->'+
+                 '<tor:app>?</tor:app>'+
+              '</tor:applicationInfo>'+
+           '</soapenv:Header>'+
+           '<soapenv:Body>'+
+              '<ns:GetAllSignalFormulasRequest/>'+
+           '</soapenv:Body>'+
+        '</soapenv:Envelope>';
 
     console.log("Search: <-- XML -->");
     //console.log(request);
 
+    // var ctx = {
+    //     "request": request,
+    //     "url": endpoint,
+    //     "action":"http://www.schemas.multex.com/soapaction?type=Search_2_Search_2_Request&ns=http://www.reuters.com/ns/2008/03/05/webservices/Search_2",
+    //     "contentType":"text/xml"
+    // };
+
     var ctx = {
         "request": request,
         "url": endpoint,
-        "action":"http://www.schemas.multex.com/soapaction?type=Search_2_Search_2_Request&ns=http://www.reuters.com/ns/2008/03/05/webservices/Search_2",
+        "action":"http://schemas.thomsonreuters.com/signals/formulaservice/2013-09-01/ISignalFormulaService/GetAllSignalFormulas",
         "contentType":"text/xml"
     };
+
 
     var handlers =  [new ws.Http()];
 

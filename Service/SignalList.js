@@ -11,6 +11,7 @@ SignalList.prototype.init = function() {
 }
 
 SignalList.prototype.service = function(context, payload, callback) {
+    console.log("Service SignalList is called");
     var request =
         '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:user="http://schemas.reuters.com/ns/2007/10/cp/user_identity" xmlns:tor="http://schemas.reuters.com/ns/2005/08/infrastructure/tornado_soap" xmlns:ns="http://schemas.thomsonreuters.com/signals/formulas/messages/2013-09-01/">'+
            '<soapenv:Header>'+
