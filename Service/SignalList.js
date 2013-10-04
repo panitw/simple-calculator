@@ -31,7 +31,6 @@ SignalList.prototype.service = function(context, payload, callback) {
            '</soapenv:Body>'+
         '</soapenv:Envelope>';
 
-    console.log("Search: <-- XML -->");
     //console.log(request);
 
     var ctx = {
@@ -48,11 +47,11 @@ SignalList.prototype.service = function(context, payload, callback) {
             object: true
         });
         console.log(ctx.response);
-        var result = json["soap:Envelope"]["soap:Body"];
-        if (!result["soap:Fault"]) {
+        var result = json["s:Envelope"]["s:Body"];
+        if (!result["s:Fault"]) {
             callback(null, result);
         } else {
-            callback(result["soap:Fault"]["faultstring"]);
+            callback(result["s:Fault"]["faultstring"]);
         }
     });
 }
