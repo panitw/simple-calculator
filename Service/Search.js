@@ -34,7 +34,7 @@ Search.prototype.init = function() {
  * }
  */
 Search.prototype.service = function(context, payload, callback) {
-    var param = payload.parameters;
+    var param = payload;
     var type = param.Type;
     var request =
         '<soap:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">'+
