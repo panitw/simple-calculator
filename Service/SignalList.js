@@ -56,4 +56,4 @@ SignalList.prototype.service = function(context, payload, callback) {
     });
 }
 
-module.exports = Search;
+module.exports = SignalList;
