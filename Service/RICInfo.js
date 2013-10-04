@@ -1,6 +1,9 @@
 function RICInfo() {
 }
 
+RICInfo.prototype.init = function() {
+}
+
 RICInfo.prototype.service = function(context, payload, callback) {
     var ric = payload.parameters.ric;
     var max = payload.parameters.max;
