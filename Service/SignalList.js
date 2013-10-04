@@ -47,6 +47,7 @@ SignalList.prototype.service = function(context, payload, callback) {
         var json = xml2json.toJson(ctx.response, {
             object: true
         });
+        console.log(ctx.response);
         var result = json["soap:Envelope"]["soap:Body"];
         if (!result["soap:Fault"]) {
             callback(null, result);
